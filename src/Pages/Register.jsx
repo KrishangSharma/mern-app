@@ -21,7 +21,7 @@ const Register = () => {
     formData.append("password", password);
 
     const res = await axios.post(
-      "http://thoughtful-lunchroom-production.up.railway.app/api/user/register",
+      "https://thoughtful-lunchroom-production.up.railway.app/api/user/register",
       formData,
       {
         headers: {

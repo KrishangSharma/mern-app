@@ -15,7 +15,7 @@ const GetUser = () => {
         console.log(userId);
 
         const response = await axios.get(
-          `http://thoughtful-lunchroom-production.up.railway.app/api/user/${userId}`,
+          `https://thoughtful-lunchroom-production.up.railway.app/api/user/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

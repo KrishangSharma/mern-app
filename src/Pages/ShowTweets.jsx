@@ -10,7 +10,7 @@ const ShowTweets = () => {
     const fetchTweets = async () => {
       try {
         const response = await axios.get(
-          "http://thoughtful-lunchroom-production.up.railway.app/api/tweets",
+          "https://thoughtful-lunchroom-production.up.railway.app/api/tweets",
           {
             headers: {
               Authorization: `Bearer ${token}`,

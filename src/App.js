@@ -14,7 +14,7 @@ function App() {
         <Routes>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/" element={<ShowTweets />} />
+          <Route path="/app" element={<ShowTweets />} />
           <Route path="/create" element={<Create />} />
           <Route path="/me" element={<Profile />} />
         </Routes>
