@@ -1,13 +1,15 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const CreateTweet = () => {
   const navigate = useNavigate();
   const [content, setContent] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
+    setLoading(true);
     e.preventDefault();
 
     const formData = new FormData();
@@ -17,6 +19,7 @@ const CreateTweet = () => {
 
     const res = await axios.post(
       "https://thoughtful-lunchroom-production.up.railway.app/api/tweets/create",
+      // "http://localhost:5000/api/tweets/create",
       formData,
       {
         headers: {
@@ -54,7 +57,7 @@ const CreateTweet = () => {
             onClick={handleSubmit}
             className="mt-2 border border-black rounded-md py-2 hover:text-white hover:bg-black"
           >
-            Create Tweet
+            {loading ? <span>Posting...</span> : <span>Post Tweet</span>}
           </button>
         </form>
       </div>

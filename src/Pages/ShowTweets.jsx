@@ -11,41 +11,46 @@ const ShowTweets = () => {
       try {
         const response = await axios.get(
           "https://thoughtful-lunchroom-production.up.railway.app/api/tweets",
+          // "http://localhost:5000/api/tweets",
           {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           }
         );
-
+        console.log(response.data.tweets);
         setTweets(response.data.tweets);
       } catch (error) {
         console.log(error);
       }
     };
-    // console.log(tweets);
     fetchTweets();
   }, []);
 
   return (
-    <div className="flex flex-col gap-5 items-end">
-      <Link
-        to="/create"
-        className="text-center m-6 p-3 text-2xl border rounded-md bg-black text-white hover:bg-gray-800"
-      >
-        Create Tweet +
-      </Link>
-      <div className="w-2/3 mx-auto my-5 flex gap-5 flex-wrap">
-        {tweets.length > 0 ? (
+    <div className="w-2/3 m-auto flex flex-col gap-5">
+      <div className="w-100 flex justify-between items-center">
+        <h1 className="text-3xl">Currently Happening...</h1>
+        <Link
+          to="/create"
+          className="m-6 p-3 text-xl border rounded-md bg-black text-white hover:bg-gray-800"
+        >
+          Create Tweet +
+        </Link>
+      </div>
+      <div className="w-full mx-auto my-5 flex flex-col gap-5">
+        {tweets.length === 0 ? (
+          <h2 className="text-3xl">Nothing to show! Create Some Tweets</h2>
+        ) : (
           tweets.map((tweet) => (
             <Tweet
               key={tweet._id}
               content={tweet.content}
               user={tweet.user.userName}
+              name={tweet.user.name}
+              createdAt={tweet.createdAt}
             />
           ))
-        ) : (
-          <h2 className="text-3xl">Nothing to show here! Create some tweets</h2>
         )}
       </div>
     </div>

@@ -6,6 +6,7 @@ import { useNavigate, Link } from "react-router-dom";
 const Register = () => {
   const navigate = useNavigate();
 
+  const [loading, setLoading] = useState(false);
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -37,7 +38,7 @@ const Register = () => {
     });
 
     navigate("/login");
-    // console.log(res);
+    setLoading(false);
   };
 
   return (
@@ -90,7 +91,7 @@ const Register = () => {
             onClick={handleSubmit}
             className="mt-2 border border-black rounded-md py-2 hover:text-white hover:bg-black"
           >
-            Register
+            {loading ? <span>Register</span> : <span>Registering...</span>}
           </button>
           <span className="text-sm">
             Already have an account?{" "}

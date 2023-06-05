@@ -6,9 +6,11 @@ const Register = () => {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {
+    setLoading(true);
     e.preventDefault();
 
     const formData = new FormData();
@@ -17,6 +19,7 @@ const Register = () => {
 
     const res = await axios.post(
       "https://thoughtful-lunchroom-production.up.railway.app/api/user/login",
+      // "http://localhost:5000/api/user/login",
       formData,
       {
         headers: {
@@ -30,7 +33,6 @@ const Register = () => {
 
     navigate("/app");
     window.location.reload();
-    // console.log(res);
   };
 
   return (
@@ -63,7 +65,7 @@ const Register = () => {
             onClick={handleSubmit}
             className="mt-2 border border-black rounded-md py-2 hover:text-white hover:bg-black"
           >
-            Login
+            {loading ? <span>Logging In...</span> : <span>Log In</span>}
           </button>
           <span className="text-sm">
             Don't have an account?{" "}

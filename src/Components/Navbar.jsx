@@ -18,12 +18,11 @@ const Navbar = () => {
   const logout = () => {
     localStorage.removeItem("authToken");
     setUser(false);
-    navigate("/login");
   };
 
   return (
     <nav className="w-full h-20 flex items-center justify-between p-5 shadow-md">
-      <Link to="/" className="text-3xl">
+      <Link to="/app" className="text-3xl">
         Tweeter
       </Link>
       <div className="w-52 flex justify-between">
