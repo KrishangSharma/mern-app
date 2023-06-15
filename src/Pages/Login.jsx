@@ -1,5 +1,7 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 import { useNavigate, Link } from "react-router-dom";
 
 const Register = () => {
@@ -8,6 +10,11 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handlePasswordToggle = () => {
+    setShowPassword(!showPassword);
+  };
 
   const handleSubmit = async (e) => {
     setLoading(true);
@@ -17,22 +24,39 @@ const Register = () => {
     formData.append("email", email);
     formData.append("password", password);
 
-    const res = await axios.post(
-      "https://thoughtful-lunchroom-production.up.railway.app/api/user/login",
-      // "http://localhost:5000/api/user/login",
-      formData,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
+    try {
+      const res = await axios.post(
+        // "https://thoughtful-lunchroom-production.up.railway.app/api/user/login",
+        "http://localhost:5000/api/user/login",
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const token = res.data.token;
+      localStorage.setItem("authToken", token);
+
+      setLoading(false);
+      navigate("/app");
+      window.location.reload();
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const { response } = error;
+        if (response && response.data && response.data.message) {
+          toast.error("Invalid Login Credentials!", {
+            autoClose: 2000,
+            draggable: false,
+            theme: "light",
+          });
+        }
+      } else {
+        console.error(error);
       }
-    );
-
-    const token = res.data.token;
-    localStorage.setItem("authToken", token);
-
-    navigate("/app");
-    window.location.reload();
+      setLoading(false);
+    }
   };
 
   return (
@@ -52,13 +76,29 @@ const Register = () => {
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              placeholder="Enter password"
-              onChange={(e) => setPassword(e.target.value)}
-              className="p-2 border border-black rounded-md"
-            />
+            <div className="w-full flex items-center">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                placeholder="Enter password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full p-2 border border-black rounded-md"
+              />
+              {showPassword ? (
+                <HiOutlineEyeOff
+                  onClick={handlePasswordToggle}
+                  className="-mx-10"
+                  fontSize={20}
+                />
+              ) : (
+                <HiOutlineEye
+                  onClick={handlePasswordToggle}
+                  className="-mx-10"
+                  fontSize={20}
+                />
+              )}
+            </div>
           </div>
           <button
             type="submit"

@@ -10,16 +10,16 @@ const ShowTweets = () => {
     const fetchTweets = async () => {
       try {
         const response = await axios.get(
-          "https://thoughtful-lunchroom-production.up.railway.app/api/tweets",
-          // "http://localhost:5000/api/tweets",
+          // "https://thoughtful-lunchroom-production.up.railway.app/api/tweets",
+          "http://localhost:5000/api/tweets",
           {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           }
         );
-        console.log(response.data.tweets);
-        setTweets(response.data.tweets);
+        // console.log(response.data.tweets);
+        setTweets(response.data.tweets.reverse());
       } catch (error) {
         console.log(error);
       }
@@ -48,6 +48,7 @@ const ShowTweets = () => {
               content={tweet.content}
               user={tweet.user.userName}
               name={tweet.user.name}
+              userId={tweet.user._id}
               createdAt={tweet.createdAt}
             />
           ))

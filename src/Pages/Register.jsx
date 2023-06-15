@@ -15,29 +15,36 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setLoading(true);
     const formData = new FormData();
     formData.append("name", name);
     formData.append("userName", username);
     formData.append("email", email);
     formData.append("password", password);
 
-    const res = await axios.post(
-      "https://thoughtful-lunchroom-production.up.railway.app/api/user/register",
-      formData,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    try {
+      const res = await axios.post(
+        // "https://thoughtful-lunchroom-production.up.railway.app/api/user/register",
+        "http://localhost:5000/api/user/register",
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-    toast("User Registered!", {
-      autoClose: 2000,
-      draggable: false,
-      theme: "light",
-    });
+      toast.success("User Registered!", {
+        autoClose: 2000,
+        draggable: false,
+        theme: "light",
+      });
 
-    navigate("/login");
+      navigate("/login");
+    } catch (error) {
+      console.error(error);
+      toast.error("Registration failed. Please try again.");
+    }
     setLoading(false);
   };
 
@@ -91,7 +98,7 @@ const Register = () => {
             onClick={handleSubmit}
             className="mt-2 border border-black rounded-md py-2 hover:text-white hover:bg-black"
           >
-            {loading ? <span>Register</span> : <span>Registering...</span>}
+            {loading ? <span>Registering...</span> : <span>Register</span>}
           </button>
           <span className="text-sm">
             Already have an account?{" "}

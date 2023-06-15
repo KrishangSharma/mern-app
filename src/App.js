@@ -1,5 +1,12 @@
 import "./App.css";
-import { Register, Login, ShowTweets, Create, Profile } from "./Pages";
+import {
+  Register,
+  Login,
+  ShowTweets,
+  Create,
+  Profile,
+  UserProfile,
+} from "./Pages";
 import { Navbar } from "./Components";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
@@ -17,6 +24,7 @@ function App() {
           <Route path="/app" element={<ShowTweets />} />
           <Route path="/create" element={<Create />} />
           <Route path="/me" element={<Profile />} />
+          <Route path="/:id" element={<UserProfile />} />
         </Routes>
       </div>
     </Router>
