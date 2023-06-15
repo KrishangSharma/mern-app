@@ -18,8 +18,8 @@ const CreateTweet = () => {
     const token = localStorage.getItem("authToken");
 
     const res = await axios.post(
-      // "https://thoughtful-lunchroom-production.up.railway.app/api/tweets/create",
-      "http://localhost:5000/api/tweets/create",
+      "https://thoughtful-lunchroom-production.up.railway.app/api/tweets/create",
+      // "http://localhost:5000/api/tweets/create",
       formData,
       {
         headers: {

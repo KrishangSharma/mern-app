@@ -26,8 +26,8 @@ const Register = () => {
 
     try {
       const res = await axios.post(
-        // "https://thoughtful-lunchroom-production.up.railway.app/api/user/login",
-        "http://localhost:5000/api/user/login",
+        "https://thoughtful-lunchroom-production.up.railway.app/api/user/login",
+        // "http://localhost:5000/api/user/login",
         formData,
         {
           headers: {

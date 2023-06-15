@@ -15,8 +15,8 @@ const GetUser = () => {
         const userId = decodedToken.id;
 
         const response = await axios.get(
-          // `https://thoughtful-lunchroom-production.up.railway.app/api/user/${userId}`,
-          `http://localhost:5000/api/user/${userId}`,
+          `https://thoughtful-lunchroom-production.up.railway.app/api/user/${userId}`,
+          // `http://localhost:5000/api/user/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

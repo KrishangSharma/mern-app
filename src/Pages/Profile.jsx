@@ -14,8 +14,8 @@ const Profile = () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          // `https://thoughtful-lunchroom-production.up.railway.app/api/user/${id}`,
-          `http://localhost:5000/api/user/${id}`,
+          `https://thoughtful-lunchroom-production.up.railway.app/api/user/${id}`,
+          //   `http://localhost:5000/api/user/${id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
