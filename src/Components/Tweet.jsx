@@ -11,8 +11,8 @@ const Tweet = ({ content, user, name, createdAt, userId, avatar }) => {
   return (
     <div className="w-full border border-blue rounded-md p-3">
       <div className="w-full flex gap-3 items-start">
-        <div className="w-14 h-14 overflow-hidden rounded-full">
-          <img src={avatar} alt={name} />
+        <div className="w-14 h-14 overflow-hidden rounded-full flex-shrink-0">
+          <img src={avatar} alt={name} className="w-full h-full object-cover" />
         </div>
         <div className="flex flex-col gap-1">
           <div className="flex flex-col">
