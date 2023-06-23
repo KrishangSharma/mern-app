@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Tweet = ({ content, user, name, createdAt, userId }) => {
+const Tweet = ({ content, user, name, createdAt, userId, avatar }) => {
   const date = new Date(createdAt).toLocaleDateString("en-in", {
     day: "2-digit",
     month: "short",
@@ -9,13 +9,22 @@ const Tweet = ({ content, user, name, createdAt, userId }) => {
   });
 
   return (
-    <div className="w-full flex flex-col gap-2 border border-blue rounded-md p-3">
-      <span className="text-xl">{name}</span>
-      <Link to={`/${userId}`} className="text-md text-slate-500 w-min">
-        @{user}
-      </Link>
-      <span className="text-md">{content}</span>
-      <span className="text-sm text-slate-600">{date}</span>
+    <div className="w-full border border-blue rounded-md p-3">
+      <div className="w-full flex gap-3 items-start">
+        <div className="w-14 h-14 overflow-hidden rounded-full">
+          <img src={avatar} alt={name} />
+        </div>
+        <div className="flex flex-col gap-1">
+          <div className="flex flex-col">
+            <span className="text-xl">{name}</span>
+            <Link to={`/${userId}`} className="text-sm text-gray-400 w-min">
+              {`@${user}`}
+            </Link>
+          </div>
+          <p className="text-gray-600">{content}</p>
+          <span className="text-sm text-gray-400">{date}</span>
+        </div>
+      </div>
     </div>
   );
 };

@@ -11,6 +11,7 @@ const Register = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [avatar, setAvatar] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,6 +22,7 @@ const Register = () => {
     formData.append("userName", username);
     formData.append("email", email);
     formData.append("password", password);
+    formData.append("avatar", avatar);
 
     try {
       const res = await axios.post(
@@ -29,7 +31,7 @@ const Register = () => {
         formData,
         {
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "multipart/form-data",
           },
         }
       );
@@ -90,6 +92,15 @@ const Register = () => {
               id="password"
               placeholder="Create your password"
               onChange={(e) => setPassword(e.target.value)}
+              className="p-2 border border-black rounded-md"
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <label htmlFor="avatar">Choose a Profile Picture</label>
+            <input
+              type="file"
+              id="avatar"
+              onChange={(e) => setAvatar(e.target.files[0])}
               className="p-2 border border-black rounded-md"
             />
           </div>

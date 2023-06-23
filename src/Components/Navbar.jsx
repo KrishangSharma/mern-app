@@ -20,7 +20,6 @@ const Navbar = () => {
   const logout = () => {
     localStorage.removeItem("authToken");
     setUser(false);
-    navigate("/login");
   };
 
   return (

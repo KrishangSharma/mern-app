@@ -29,7 +29,7 @@ const CreateTweet = () => {
       }
     );
 
-    toast("Tweet Created!!", {
+    toast.success("Tweet Created!!", {
       autoClose: 2000,
       draggable: false,
       theme: "light",

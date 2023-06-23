@@ -48,6 +48,7 @@ const ShowTweets = () => {
               content={tweet.content}
               user={tweet.user.userName}
               name={tweet.user.name}
+              avatar={tweet.user.avatar}
               userId={tweet.user._id}
               createdAt={tweet.createdAt}
             />
