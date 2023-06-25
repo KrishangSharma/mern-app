@@ -1,12 +1,19 @@
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Tweet } from "../Components/";
 import { useEffect, useState } from "react";
 
 const ShowTweets = () => {
+  const navigate = useNavigate();
+
   const token = localStorage.getItem("authToken");
   const [tweets, setTweets] = useState([]);
+
   useEffect(() => {
+    if (!token) {
+      console.log("No token found!");
+      navigate("/login");
+    }
     const fetchTweets = async () => {
       try {
         const response = await axios.get(
