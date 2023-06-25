@@ -24,7 +24,7 @@ const Navbar = () => {
 
   return (
     <nav className="w-full h-20 flex items-center justify-between p-5 shadow-md">
-      <Link to="/home" className="text-3xl">
+      <Link to="/app" className="text-3xl">
         Tweeter
       </Link>
       <div className="w-36 flex justify-between">
