@@ -8,6 +8,7 @@ import {
   UserProfile,
   Home,
 } from "./Pages";
+import { useNavigate } from "react-router-dom";
 import { Navbar } from "./Components";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
@@ -20,7 +21,7 @@ function App() {
       <div className="w-full h-screen">
         <Navbar />
         <Routes>
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/app" element={<ShowTweets />} />
