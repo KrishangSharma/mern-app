@@ -4,3 +4,4 @@ export { default as ShowTweets } from "./ShowTweets";
 export { default as Create } from "./CreateTweet";
 export { default as Profile } from "./getUser";
 export { default as UserProfile } from "./Profile";
+export { default as Home } from "./Home";

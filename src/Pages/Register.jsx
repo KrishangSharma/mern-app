@@ -1,6 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useState, useEffect } from "react";
+import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 import { useNavigate, Link } from "react-router-dom";
 
 const Register = () => {
@@ -12,6 +13,11 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [avatar, setAvatar] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handlePasswordToggle = () => {
+    setShowPassword(!showPassword);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -87,13 +93,29 @@ const Register = () => {
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              placeholder="Create your password"
-              onChange={(e) => setPassword(e.target.value)}
-              className="p-2 border border-black rounded-md"
-            />
+            <div className="w-full flex items-center">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                placeholder="Enter password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full p-2 border border-black rounded-md"
+              />
+              {showPassword ? (
+                <HiOutlineEyeOff
+                  onClick={handlePasswordToggle}
+                  className="-mx-10"
+                  fontSize={20}
+                />
+              ) : (
+                <HiOutlineEye
+                  onClick={handlePasswordToggle}
+                  className="-mx-10"
+                  fontSize={20}
+                />
+              )}
+            </div>
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="avatar">Choose a Profile Picture</label>

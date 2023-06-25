@@ -7,6 +7,10 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(false);
 
+  if (user) {
+    navigate("/app");
+  }
+
   useEffect(() => {
     const token = localStorage.getItem("authToken");
 

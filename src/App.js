@@ -6,6 +6,7 @@ import {
   Create,
   Profile,
   UserProfile,
+  Home,
 } from "./Pages";
 import { Navbar } from "./Components";
 import "react-toastify/dist/ReactToastify.css";
@@ -19,6 +20,7 @@ function App() {
       <div className="w-full h-screen">
         <Navbar />
         <Routes>
+          <Route path="/" exact element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/app" element={<ShowTweets />} />
